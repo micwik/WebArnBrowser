@@ -89,9 +89,10 @@ void MainWindowW::create()
 {
     enableUpdates();
 
-    QByteArray  title = "Arn Browser - ";
+    QByteArray  title = "Arn Browser";
     mainMutex.lock();
-    title += arnBrowseName;
+    if (!arnBrowseName.isEmpty())
+        title += " - " + arnBrowseName;
     mainMutex.unlock();
     setTitle( title.constData());
 
