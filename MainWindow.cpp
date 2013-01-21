@@ -171,26 +171,29 @@ void MainWindowW::setupArnView()
     _terminalButton->setEnabled(false);
     _editButton = new WPushButton("Edit");
     _editButton->resize(100, 30);
-    _editButton->setMargin(15, Top);
     _editButton->setEnabled(false);
     _manageButton = new WPushButton("Manage");
     _manageButton->resize(100, 30);
-    _manageButton->setMargin(25, Top);
+    _manageButton->setMargin(10, Top);
     _manageButton->setEnabled(true);
     _vcsButton = new WPushButton("VCS");
     _vcsButton->resize(100, 30);
-    _vcsButton->setMargin(25, Top);
     _vcsButton->setEnabled(true);
     _helpButton = new WPushButton("Help");
     _helpButton->resize(100, 30);
-    _helpButton->setMargin(40, Top);
+    _helpButton->setMargin(20, Top);
     _helpButton->setEnabled(false);
 
-    wlc->addWidget( _terminalButton);
-    wlc->addWidget( _editButton);
-    wlc->addWidget( _manageButton);
-    wlc->addWidget( _vcsButton);
-    wlc->addWidget( _helpButton);
+    WVBoxLayout*  butlay = new WVBoxLayout;
+    butlay->addWidget( _terminalButton);
+    butlay->addWidget( _editButton);
+    butlay->addWidget( _manageButton);
+    butlay->addWidget( _vcsButton);
+    butlay->addWidget( _helpButton);
+    butlay->addStretch(1);
+    butlay->setSpacing(20);
+    wlc->setLayout( butlay);
+
     WHBoxLayout*  hlay = new WHBoxLayout;
     hlay->addWidget( wplc);
     hlay->addWidget( panel);
