@@ -122,10 +122,10 @@ WWidget*  MultiDelegate::update( WWidget* widget, const WModelIndex& index, WFla
 
     switch (valueQ.type()) {
     case QMetaType::QImage: {
-        if (widget) {  // MW: Workaround by allways create new widget to avoid lockup
-            delete widget;
-            widget = 0;
-        }
+        // if (widget) {  // MW: Workaround by allways create new widget to avoid lockup
+        //     delete widget;
+        //     widget = 0;
+        // }
         WContainerWidget* wc;
         WImage*  wImage;
         ImageResource*  imgRes;
@@ -155,7 +155,7 @@ WWidget*  MultiDelegate::update( WWidget* widget, const WModelIndex& index, WFla
         QImage  image = valueQ.value<QImage>();
         image = image.scaledToHeight(20);
         imgRes->setImage( image);
-        // imgRes->setChanged();
+        imgRes->setChanged();
 
         qDebug() << "******** End image";
         return widget;
