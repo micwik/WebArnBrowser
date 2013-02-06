@@ -147,6 +147,8 @@ void MainWindowW::setupArnView()
     WPanel *panel = new WPanel();
     //panel->resize(700, WLength::Auto);
     panel->setCentralWidget( _arnView);
+    panel->setMinimumSize(725, 0);
+    panel->setMaximumSize( panel->minimumWidth(), WLength::Auto);
 
     _model = new ArnModelW;
     _model->setApplication( this);
@@ -206,7 +208,7 @@ void MainWindowW::setupArnView()
     hlay->addStretch();
     // hlay->setResizable(2, true);
     _mainWidget->setLayout( hlay);
-    _mainWidget->setMaximumSize(915, WLength::Auto);
+    _mainWidget->setMaximumSize(900, WLength::Auto);
 
     _terminalButton->clicked().connect( this, &MainWindowW::onTerminalButtonClicked);
     _editButton->clicked().connect( this, &MainWindowW::onEditButtonClicked);
