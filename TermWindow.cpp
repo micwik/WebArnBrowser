@@ -115,9 +115,9 @@ TermWindow::TermWindow( const QString& path, QObject* parent) :
     _inputLine->setFocus(true);  // MW: Doesn't work ...
 
     //// Logics
-    QString  twinPath = Arn::twinPath( path);
+    QString  twinPath = ArnM::twinPath( path);
     // Always pipe is client side and pipe2 is provider side
-    if (!Arn::isProviderPath( path)) {  // path is client side (normal)
+    if (!ArnM::isProviderPath( path)) {  // path is client side (normal)
         _pipe.open( path);
         _pipe2.open( twinPath);
     }

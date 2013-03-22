@@ -64,9 +64,9 @@ ArnClient*  QtMainThread::arnClient()
 void  QtMainThread::run()
 {
     qDebug() << "--- QtMainThread: start";
-    qDebug() << "--- ArnInfo: " << Arn::info();
+    qDebug() << "--- ArnInfo: " << ArnM::info();
 
-    Arn::setDefaultIgnoreSameValue(true);
+    ArnM::setDefaultIgnoreSameValue(true);
 
     _arnClient = new ArnClient;
     // _arnClient->connectToArn("oden");
