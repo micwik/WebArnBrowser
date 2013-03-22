@@ -57,7 +57,7 @@ using namespace Wt;
 CodeWindow::CodeWindow( const QString& path, QObject* parent) :
     QObject( parent), WObject(0)
 {
-    QString  itemName = Arn::itemName( path);
+    QString  itemName = ArnM::itemName( path);
 
     _wt = new WDialog("Edit " + toWString( path));
     _wt->setModal(false);

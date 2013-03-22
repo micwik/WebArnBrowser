@@ -72,10 +72,10 @@ void  QtMainThread::setArnConnection( const QString &arnHost, quint16 port)
 void  QtMainThread::run()
 {
     qDebug() << "--- QtMainThread: start";
-    qDebug() << "--- ArnInfo: " << Arn::info();
+    qDebug() << "--- ArnInfo: " << ArnM::info();
     qDebug() << "--- Connect to: " << _arnHost << " : " << _port;
 
-    Arn::setDefaultIgnoreSameValue(true);
+    ArnM::setDefaultIgnoreSameValue(true);
 
     _arnClient = new ArnClient;
     _arnClient->connectToArn( _arnHost, _port);
