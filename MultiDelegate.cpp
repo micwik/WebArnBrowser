@@ -122,10 +122,10 @@ WWidget*  MultiDelegate::update( WWidget* widget, const WModelIndex& index, WFla
 
     switch (valueQ.type()) {
     case QMetaType::QImage: {
-        if (widget) {  // MW: Workaround by allways create new widget to avoid lockup
-            delete widget;
-            widget = 0;
-        }
+        // if (widget) {  // MW: Workaround by allways create new widget to avoid lockup
+        //     delete widget;
+        //     widget = 0;
+        // }
         WContainerWidget* wc;
         WImage*  wImage;
         ImageResource*  imgRes;
@@ -155,7 +155,7 @@ WWidget*  MultiDelegate::update( WWidget* widget, const WModelIndex& index, WFla
         QImage  image = valueQ.value<QImage>();
         image = image.scaledToHeight(20);
         imgRes->setImage( image);
-        // imgRes->setChanged();
+        imgRes->setChanged();
 
         qDebug() << "******** End image";
         return widget;
@@ -184,6 +184,8 @@ WWidget*  MultiDelegate::createEditor( const WModelIndex& index, WFlags<ViewItem
             // setupCalenderWidget( editor);
             // editor->setMaximumWidth( editor->sizeHint().width());
             editor->setFormat("yyyy-MM-dd");
+            editor->setGlobalPopup( true);
+            editor->setPopupVisible( true);
             result->enterPressed().connect( boost::bind( &MultiDelegate::doCloseEditor, this, result, true));
             result->escapePressed().connect( boost::bind( &MultiDelegate::doCloseEditor, this, result, false));
             result->escapePressed().preventPropagation();
@@ -206,7 +208,8 @@ WWidget*  MultiDelegate::createEditor( const WModelIndex& index, WFlags<ViewItem
 
             editor->setModal(false);
             editor->show();
-            editor->setResizable(true);
+            // editor->setResizable(true);
+            // editor->setClosable(true);
             closeButton->clicked().connect( boost::bind( &MultiDelegate::doCloseEditor, this, result, false));
             closeButton->enterPressed().connect( boost::bind( &MultiDelegate::doCloseEditor, this, result, false));
             closeButton->escapePressed().connect( boost::bind( &MultiDelegate::doCloseEditor, this, result, false));
@@ -278,6 +281,7 @@ WWidget*  MultiDelegate::createEditor( const WModelIndex& index, WFlags<ViewItem
 
 void  MultiDelegate::doCloseEditor( WWidget* editor, bool save)  const
 {
+    qDebug() << "!!!!!!!!! Close Delegate Editor.";
     closeEditor().emit(editor, save);
 }
 
@@ -307,9 +311,9 @@ boost::any  MultiDelegate::editState( WWidget* editor)  const
 
 void  MultiDelegate::setEditState( WWidget* editor, const boost::any& value)  const
 {
-    WContainerWidget  *cw = dynamic_cast<WContainerWidget *>(editor);
+    WContainerWidget*  cw = dynamic_cast<WContainerWidget *>(editor);
     Q_ASSERT(cw);
-    WWidget  *w = cw->widget(0);
+    WWidget*  w = cw->widget(0);
     Q_ASSERT(w);
 
     if (dynamic_cast<WComboBox *>(w)) {
@@ -330,6 +334,7 @@ void  MultiDelegate::setEditState( WWidget* editor, const boost::any& value)  co
             QImage image = boost::any_cast<QVariant>(value).value<QImage>();
             imgRes->setImage( image);
             imgRes->setChanged();
+            w->setWidth( image.width() + 10);
             return;
         }
         return;

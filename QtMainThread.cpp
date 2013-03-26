@@ -38,6 +38,7 @@
 
 QtMainThread::QtMainThread()
 {
+    _port = 0;
 }
 
 
@@ -61,16 +62,23 @@ ArnClient*  QtMainThread::arnClient()
 }
 
 
+void  QtMainThread::setArnConnection( const QString &arnHost, quint16 port)
+{
+    _arnHost = arnHost.isEmpty() ? QString("localhost") : arnHost;
+    _port = port;
+}
+
+
 void  QtMainThread::run()
 {
     qDebug() << "--- QtMainThread: start";
     qDebug() << "--- ArnInfo: " << ArnM::info();
+    qDebug() << "--- Connect to: " << _arnHost << " : " << _port;
 
     ArnM::setDefaultIgnoreSameValue(true);
 
     _arnClient = new ArnClient;
-    // _arnClient->connectToArn("oden");
-    _arnClient->connectToArn("localhost");
+    _arnClient->connectToArn( _arnHost, _port);
     _arnClient->setMountPoint("/");
     _arnClient->setAutoConnect( true, 5);
 

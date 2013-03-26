@@ -119,7 +119,7 @@ void MainWindowW::create()
     root()->addWidget(_authWidget);
 
     _mainWidget = new WContainerWidget;
-    _mainWidget->setMaximumSize(860, WLength::Auto);
+    //_mainWidget->setMaximumSize(900, WLength::Auto);
     setupArnView();
 
     _mainWidget->hide();
@@ -144,11 +144,11 @@ void MainWindowW::setupArnView()
 {
     _arnView = new WTreeView();
 
-#ifdef STDITEMTEST
-#else
     WPanel *panel = new WPanel();
-    panel->resize(700, WLength::Auto);
+    //panel->resize(700, WLength::Auto);
     panel->setCentralWidget( _arnView);
+    panel->setMinimumSize(725, 0);
+    panel->setMaximumSize( panel->minimumWidth(), WLength::Auto);
 
     _model = new ArnModelW;
     _model->setApplication( this);
@@ -160,42 +160,55 @@ void MainWindowW::setupArnView()
     _arnView->setEditTriggers( WAbstractItemView::DoubleClicked | WAbstractItemView::SelectedClicked);
     _arnView->setModel(_model);
     _arnView->setItemDelegate( new MultiDelegate);
-    _arnView->setColumnWidth(1, WLength(470));
+    _arnView->setColumnWidth(0, WLength(190));
+    _arnView->setColumnWidth(1, WLength(490));
 
     WContainerWidget*  wlc = new WContainerWidget;
     WPanel*  wplc = new WPanel;
+    wplc->setMinimumSize(130, 0);
+    wplc->setMaximumSize( wplc->minimumWidth(), WLength::Auto);
     wplc->setCentralWidget( wlc);
-    wlc->setPadding(7);
+    wplc->setMargin(0);
+    wlc->setPadding(0);
+    wlc->setMargin(0);
+    //wlc->setPadding(10, Right);
     _terminalButton = new WPushButton("Terminal");
-    _terminalButton->resize(100, 30);
+    _terminalButton->setHeight(30);
     _terminalButton->setEnabled(false);
     _editButton = new WPushButton("Edit");
-    _editButton->resize(100, 30);
-    _editButton->setMargin(15, Top);
+    _editButton->setHeight(30);
     _editButton->setEnabled(false);
     _manageButton = new WPushButton("Manage");
-    _manageButton->resize(100, 30);
-    _manageButton->setMargin(25, Top);
+    _manageButton->setHeight(30);
+    _manageButton->setMargin(10, Top);
     _manageButton->setEnabled(true);
     _vcsButton = new WPushButton("VCS");
-    _vcsButton->resize(100, 30);
-    _vcsButton->setMargin(25, Top);
+    _vcsButton->setHeight(30);;
     _vcsButton->setEnabled(true);
     _helpButton = new WPushButton("Help");
-    _helpButton->resize(100, 30);
-    _helpButton->setMargin(40, Top);
+    _helpButton->setHeight(30);
+    _helpButton->setMargin(20, Top);
     _helpButton->setEnabled(false);
 
-    wlc->addWidget( _terminalButton);
-    wlc->addWidget( _editButton);
-    wlc->addWidget( _manageButton);
-    wlc->addWidget( _vcsButton);
-    wlc->addWidget( _helpButton);
+    WVBoxLayout*  butlay = new WVBoxLayout;
+    butlay->addWidget( _terminalButton);
+    butlay->addWidget( _editButton);
+    butlay->addWidget( _manageButton);
+    butlay->addWidget( _vcsButton);
+    butlay->addWidget( _helpButton);
+    butlay->addStretch(1);
+    butlay->setSpacing(20);
+    wlc->setLayout( butlay);
+
     WHBoxLayout*  hlay = new WHBoxLayout;
-    hlay->addWidget( wplc);
-    hlay->addWidget( panel);
-    hlay->setSpacing(10);
+    //hlay->setSpacing(1);
+    hlay->addWidget( wplc, 0);
+    hlay->addSpacing(10);
+    hlay->addWidget( panel, 1);
+    hlay->addStretch();
+    // hlay->setResizable(2, true);
     _mainWidget->setLayout( hlay);
+    _mainWidget->setMaximumSize(900, WLength::Auto);
 
     _terminalButton->clicked().connect( this, &MainWindowW::onTerminalButtonClicked);
     _editButton->clicked().connect( this, &MainWindowW::onEditButtonClicked);
@@ -205,7 +218,6 @@ void MainWindowW::setupArnView()
     _arnView->clicked().connect( this, &MainWindowW::onArnViewClicked);
 
     _model->hasIndex(0, 0, WModelIndex());  // Start the view by asking about root
-#endif
 }
 
 
