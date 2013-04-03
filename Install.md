@@ -69,7 +69,7 @@ Please read the qmake documentation how to convert
 your *.pro files into your development environment.
 
 For example MSVC with nmake:
-> qmake ArnLib.pro <Br>
+> qmake WebArnBrowser.pro <Br>
 > nmake <Br>
 
 Windows doesn't like mixing of debug and release binaries.
@@ -92,7 +92,7 @@ Start a Shell, where Qt4 is initialized. (e.g. with
 "Programs->Qt by Trolltech ...->Qt 4.x.x Command Prompt" ).
 Check if you can execute "make" or something like "mingw32-make".
 
-> qmake ArnLib.pro <Br>
+> qmake WebArnBrowser.pro <Br>
 > make <Br>
 
 Windows doesn't like mixing of debug and release binaries.
