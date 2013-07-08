@@ -591,7 +591,7 @@ void  ArnModelQ::arnChildFound( QString path)
     ArnNode*  node = qobject_cast<ArnNode*>( arnMon->parent());
     Q_ASSERT( node);
 
-    QString itemName = Arn::itemName( path);
+    QString itemName = ArnM::itemName( path);
 
     if (node->_expandState.e > ArnNode::Expand::Off) {
         WServer::instance()->post( _wt->_app->sessionId(),

@@ -174,6 +174,8 @@ void  VcsWindow::doUpdate()
     _checkoutButton->setDisabled( _treeSel->checkedId() != Sel::RepoTree);
     _diffButton->setDisabled( _treeSel->checkedId() != Sel::RepoTree);
     _refTypeBox->setDisabled( _treeSel->checkedId() != Sel::RepoTree);
+    _statusButton->setDisabled( _treeSel->checkedId() != Sel::WorkTree);
+
     if (_refUpdated) {
         _refUpdated  = false;
         _refSel->clear();
@@ -189,6 +191,7 @@ void  VcsWindow::doUpdate()
         }
         _app->triggerUpdate();
     }
+
     if (_filesUpdated) {
         _filesUpdated  = false;
         _filesView->clear();

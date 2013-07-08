@@ -33,7 +33,7 @@
 
 /*******
  **
- **  Run With: --docroot . --http-address 0.0.0.0 --http-port 2012 arnBrowseName=TestName
+ **  Run With: --docroot . --http-address 0.0.0.0 --http-port 2012 arnHost=myServer arnBrowseName=Test
  **
  *******/
 
@@ -71,15 +71,17 @@ int  main( int argc, char *argv[])
     // Needed for Qt's eventloop threads to work
     QCoreApplication  app( argc, argv);
 
-    QtMainThread::instance().start();
-
     QByteArray  argXs;
     for (int i = 0; i < argc; ++i) {
         if (i > 0)  argXs += " ";
         argXs += argv[i];
     }
     XStringMap  argXsm( argXs);
-    arnBrowseName = argXsm.value("arnBrowseName");
+    arnBrowseName   = argXsm.value("arnBrowseName");
+    QString arnHost = argXsm.value("arnHost");
+
+    QtMainThread::instance().setArnConnection( arnHost);
+    QtMainThread::instance().start();
 
     try {
         // use argv[0] as the application name to match a suitable entry

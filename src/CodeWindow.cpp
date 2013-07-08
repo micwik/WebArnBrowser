@@ -38,10 +38,11 @@
 #include <Wt/WTextArea>
 #include <Wt/WTextEdit>
 #include <Wt/WDialog>
-#include "Wt/WHBoxLayout"
-#include "Wt/WVBoxLayout"
-#include "Wt/WServer"
-#include "wt/WCodeEdit.h"
+#include <Wt/WHBoxLayout>
+#include <Wt/WVBoxLayout>
+#include <Wt/WServer>
+#include <wt/WCodeEdit.h>
+#include <Wt/WBorder>
 
 #include "CodeWindow.hpp"
 #include "wqlib/WQApplication.hpp"
@@ -56,7 +57,7 @@ using namespace Wt;
 CodeWindow::CodeWindow( const QString& path, QObject* parent) :
     QObject( parent), WObject(0)
 {
-    QString  itemName = Arn::itemName( path);
+    QString  itemName = ArnM::itemName( path);
 
     _wt = new WDialog("Edit " + toWString( path));
     _wt->setModal(false);
@@ -88,25 +89,30 @@ CodeWindow::CodeWindow( const QString& path, QObject* parent) :
         ed->setOptionSetting("lineNumbers", true);
         ed->setOptionSetting("fixedGutter", true);
         ed->setOptionSetting("matchBrackets", true);
-        ed->setOptionSetting("lineNumbers", true);
+        // ed->decorationStyle().setBorder( WBorder( WBorder::Solid, WBorder::Medium, Wt::black));
     }
     else {
         _lines = new WTextArea();
     }
 
-    WHBoxLayout*  hlay = new WHBoxLayout;
-    hlay->addWidget( _reLoadButton);
-    hlay->addWidget( _saveButton);
-    hlay->setSpacing(10);
-    hlay->insertSpacing(2, 50);
+    WHBoxLayout*  hlay1 = new WHBoxLayout;
+    hlay1->addWidget( _reLoadButton);
+    hlay1->addWidget( _saveButton);
+    hlay1->addStretch(1);
+    hlay1->setSpacing(10);
+    hlay1->insertSpacing(2, 50);
+    WHBoxLayout*  hlay2 = new WHBoxLayout;
+    hlay2->addWidget( _lines);
     WVBoxLayout*  vlay = new WVBoxLayout;
-    vlay->addLayout( hlay);
-    vlay->addWidget( _lines, 1);
+    vlay->addLayout( hlay1);
+    vlay->addLayout( hlay2, 1);
+    // vlay->addWidget( _lines, 1);
     vlay->setSpacing(10);
 
     _wt->contents()->setPadding(0);
     _wt->resize(800, 600);
     _wt->contents()->setLayout( vlay);
+    //_wt->refresh();
     _lines->setFocus(true);
 
     //// Logics

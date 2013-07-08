@@ -31,51 +31,35 @@
 // GNU Lesser General Public License for more details.
 //
 
-#include "QtMainThread.hpp"
-#include <ArnLib/ArnClient.hpp>
-#include <QDebug>
+#ifndef QTMAINTHREAD_HPP
+#define QTMAINTHREAD_HPP
+
+#include <QThread>
+#include <QString>
+
+class ArnClient;
 
 
-QtMainThread::QtMainThread()
+class QtMainThread : public QThread
 {
-}
+Q_OBJECT
+public:
+    static QtMainThread&  instance();
+    static ArnClient*  arnClient();
+    void setArnConnection( const QString& arnHost, quint16 port = 0);
+
+protected:
+    void  run();
+
+private:
+    /// Private constructor/destructor to keep this class singleton
+    QtMainThread();
+    ~QtMainThread();
+
+    quint16 _port;
+    QString _arnHost;
+    ArnClient*  _arnClient;
+};
 
 
-QtMainThread::~QtMainThread()
-{
-    wait();
-}
-
-
-QtMainThread&  QtMainThread::instance()
-{
-    static QtMainThread  instance_;
-
-    return instance_;
-}
-
-
-ArnClient*  QtMainThread::arnClient()
-{
-    return instance()._arnClient;
-}
-
-
-void  QtMainThread::run()
-{
-    qDebug() << "--- QtMainThread: start";
-    qDebug() << "--- ArnInfo: " << Arn::info();
-
-    Arn::setDefaultIgnoreSameValue(true);
-
-    _arnClient = new ArnClient;
-    // _arnClient->connectToArn("oden");
-    _arnClient->connectToArn("localhost");
-    _arnClient->setMountPoint("/");
-    _arnClient->setAutoConnect( true, 5);
-
-    // qDebug() << "--- QtMainThread: before exec()";
-    exec();
-
-    delete _arnClient;
-}
+#endif // QTMAINTHREAD_HPP

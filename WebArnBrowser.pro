@@ -19,50 +19,47 @@ OBJECTS_DIR = tmp
 MOC_DIR = tmp
 
 
-SOURCES += main.cpp \
-    wqlib/DispatchThread.cpp \
-    wqlib/WQApplication.cpp \
-    Math.cpp \
-    MainWindow.cpp \
-    QtMainThread.cpp \
-    MultiDelegate.cpp \
-    Session.cpp \
-    User.cpp \
-    TermWindow.cpp \
-    CodeWindow.cpp \
+SOURCES += src/wqlib/DispatchThread.cpp \
+    src/wqlib/WQApplication.cpp \
     wt/WCodeEdit.cpp \
-    VcsWindow.cpp \
-    ManageWindow.cpp \
-    ArnModel.cpp
+    src/main.cpp \
+    src/Math.cpp \
+    src/MainWindow.cpp \
+    src/QtMainThread.cpp \
+    src/MultiDelegate.cpp \
+    src/Session.cpp \
+    src/User.cpp \
+    src/TermWindow.cpp \
+    src/CodeWindow.cpp \
+    src/VcsWindow.cpp \
+    src/ManageWindow.cpp \
+    src/ArnModel.cpp
 
 HEADERS += \
-    wqlib/DispatchThread.hpp \
-    wqlib/WQApplication.hpp \
-    Math.hpp \
-    MainWindow.hpp \
-    QtMainThread.hpp \
-    MultiDelegate.hpp \
-    User.hpp \
-    Session.hpp \
-    ItemDataRole.hpp \
-    TermWindow.hpp \
-    CodeWindow.hpp \
+    src/wqlib/DispatchThread.hpp \
+    src/wqlib/WQApplication.hpp \
     wt/DomElement.h \
     wt/EscapeOStream.h \
     wt/WCodeEdit.h \
-    VcsWindow.hpp \
-    ManageWindow.hpp \
-    ArnModel.hpp
+    src/Math.hpp \
+    src/MainWindow.hpp \
+    src/QtMainThread.hpp \
+    src/MultiDelegate.hpp \
+    src/User.hpp \
+    src/Session.hpp \
+    src/ItemDataRole.hpp \
+    src/TermWindow.hpp \
+    src/CodeWindow.hpp \
+    src/VcsWindow.hpp \
+    src/ManageWindow.hpp \
+    src/ArnModel.hpp
 
 
 LIBS += -L$$OUT_PWD/../ArnLib/ -lArn -lwt -lwthttp -lwtdbo -lwtdbosqlite3 \
         -lboost_thread -lboost_signals -lboost_system \
         -lcrypt
-#LIBS += -L$$OUT_PWD/../ArnLib/ -lArn -L/usr/local/lib/ -lwt -lwthttp -lboost_thread -lboost_signals
 
-#INCLUDEPATH += $$PWD/..
 INCLUDEPATH += $$PWD/.. /usr/local/include/wt
-#INCLUDEPATH = $$PWD/.. /usr/local/include/wt $$INCLUDEPATH
 
 OTHER_FILES += \
     logout.html \
