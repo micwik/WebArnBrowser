@@ -33,7 +33,7 @@
 
 /*******
  **
- **  Run With: --docroot . --http-address 0.0.0.0 --http-port 2012
+ **  Run With: --docroot . --http-address 0.0.0.0 --http-port 2012 arnBrowseName=TestName
  **
  *******/
 
