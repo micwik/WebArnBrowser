@@ -44,10 +44,10 @@
 #include "ArnModel.hpp"
 #include "wqlib/WQApplication.hpp"
 #include "QtMainThread.hpp"
-#include <ArnLib/Arn.hpp>
-#include <ArnLib/ArnLink.hpp>
-#include <ArnLib/ArnMonitor.hpp>
-#include <ArnLib/XStringMap.hpp>
+#include <ArnInc/Arn.hpp>
+//#include <ArnInc/ArnLink.hpp>
+#include <ArnInc/ArnMonitor.hpp>
+#include <ArnInc/XStringMap.hpp>
 #include <QStringList>
 #include <QRegExp>
 #include <QDebug>
@@ -105,7 +105,7 @@ ArnNode::~ArnNode()
 using namespace Wt;
 
 
-QString  ArnNode::name( ArnLink::NameF nameF)  const
+QString  ArnNode::name( Arn::NameF nameF)  const
 {
     if (isOpen())  return ArnItem::name( nameF);
     else           return "<Empty>";  // Dummy node
@@ -115,7 +115,7 @@ QString  ArnNode::name( ArnLink::NameF nameF)  const
 QString  ArnNode::path()  const
 {
     if (isOpen())  return ArnItem::path();
-    else           return _parent->ArnItem::path() + name(ArnLink::NameF());
+    else           return _parent->ArnItem::path() + name(Arn::NameF());
 }
 
 
@@ -224,7 +224,7 @@ boost::any ArnModelW::data(const WModelIndex& index, int role) const
         switch (index.column()) {
         case 0:
             // qDebug() << "### arnModelW data: Col0 Disp/Edit path=" << node->path();
-            return toWString( node->name( ArnLink::NameF::NoFolderMark));
+            return toWString( node->name( Arn::NameF::NoFolderMark));
         case 1:
             boost::any  retVal = adjustedNodeData( node, role);
             return retVal;
@@ -292,12 +292,12 @@ boost::any  ArnModelW::adjustedNodeData( const ArnNode* node, int role) const
         }
     }
 
-    ArnLink::Type  type = valueNode->type();
+    Arn::DataType  type = valueNode->type();
     if (prec >= 0) { // The value should be a floating-point
         return toWString( QString::number( valueNode->toDouble(), 'f', prec) + unit);
     }
-    else if ((type.e == type.ByteArray)
-         ||  (type.e == type.String)) {
+    else if ((type == type.ByteArray)
+         ||  (type == type.String)) {
         QString  value = valueNode->toString();
         int  i = value.indexOf('\n');
         if (i < 0) {
@@ -489,7 +489,7 @@ void  ArnModelW::doInsertItem( ArnNode* node, QString itemName)
     int  insRow;
     for (insRow = 0; insRow < node->_children.size(); ++insRow) {
         ArnNode*  child = node->_children.at( insRow);
-        QString  childName = child->name( ArnLink::NameF());
+        QString  childName = child->name( Arn::NameF());
         // qDebug() << "### arnModel doInsertItem: item=" << itemName << " child=" << childName;
         if (itemName == childName)  return;  // Item already exist
         if (itemName < childName)  break;  // Sorting place found

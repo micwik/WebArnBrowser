@@ -58,7 +58,7 @@
 #include "CodeWindow.hpp"
 #include "ManageWindow.hpp"
 #include "VcsWindow.hpp"
-#include <ArnLib/Arn.hpp>
+#include <ArnInc/Arn.hpp>
 #include <QThread>
 #include <QMutex>
 #include <QDebug>
@@ -287,15 +287,15 @@ void  MainWindowW::onArnViewClicked( WModelIndex index)
     }
 
     ArnItem  arnItem( _curItemPath);
-    ArnLink::Type  type = arnItem.type();
+    Arn::DataType  type = arnItem.type();
 
     // Set state for Terminal button
     _terminalButton->setEnabled( arnItem.isPipeMode());
 
     // Set state for Edit button
-    bool editEn = !arnItem.isFolder() && ((type.e == type.Null)
-                                      || (type.e == type.ByteArray)
-                                      || (type.e == type.String));
+    bool editEn = !arnItem.isFolder() && ((type == type.Null)
+                                      ||  (type == type.ByteArray)
+                                      ||  (type == type.String));
     _editButton->setEnabled( editEn);
 }
 

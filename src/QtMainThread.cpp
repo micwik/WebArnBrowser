@@ -32,7 +32,7 @@
 //
 
 #include "QtMainThread.hpp"
-#include <ArnLib/ArnClient.hpp>
+#include <ArnInc/ArnClient.hpp>
 #include <QDebug>
 
 

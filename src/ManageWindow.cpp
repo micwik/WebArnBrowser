@@ -48,7 +48,7 @@
 
 #include "ManageWindow.hpp"
 #include "wqlib/WQApplication.hpp"
-#include <ArnLib/Arn.hpp>
+#include <ArnInc/Arn.hpp>
 #include <QDebug>
 
 
@@ -204,7 +204,7 @@ void  ManageWindow::doUpdate()
         _armDelButton->setDisabled(true);
     }
     else if (!_arnPath.isFolder()) {  // Edit non folder item
-        _itemEdit->setText( toWString( _arnPath.name( ArnLink::NameF())));
+        _itemEdit->setText( toWString( _arnPath.name( Arn::NameF())));
         _itemEdit->setDisabled(true);
         _folderButton->setChecked(false);
         _folderButton->setDisabled(true);

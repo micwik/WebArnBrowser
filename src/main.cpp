@@ -46,7 +46,7 @@
 
 #include "MainWindow.hpp"
 #include "QtMainThread.hpp"
-#include <ArnLib/XStringMap.hpp>
+#include <ArnInc/XStringMap.hpp>
 #include <QMutex>
 #include <QCoreApplication>
 #include <QDebug>

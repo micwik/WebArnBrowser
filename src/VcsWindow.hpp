@@ -35,9 +35,9 @@
 #define VCSWINDOW_HPP
 
 #include <Wt/WObject>
-#include <ArnLib/MQFlags.hpp>
-#include <ArnLib/ArnItem.hpp>
-#include <ArnLib/ArnPersistSapi.hpp>
+#include <ArnInc/MQFlags.hpp>
+#include <ArnInc/ArnItem.hpp>
+#include <ArnInc/ArnPersistSapi.hpp>
 #include <QStringList>
 #include <QObject>
 

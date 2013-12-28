@@ -35,9 +35,9 @@
 #define MANAGEWINDOW_HPP
 
 #include <Wt/WObject>
-#include <ArnLib/ArnPersistSapi.hpp>
-#include <ArnLib/MQFlags.hpp>
-#include <ArnLib/ArnItem.hpp>
+#include <ArnInc/ArnPersistSapi.hpp>
+#include <ArnInc/MQFlags.hpp>
+#include <ArnInc/ArnItem.hpp>
 #include <QTimer>
 #include <QStringList>
 #include <QObject>

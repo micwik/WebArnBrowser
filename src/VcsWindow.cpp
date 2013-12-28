@@ -51,7 +51,7 @@
 
 #include "VcsWindow.hpp"
 #include "wqlib/WQApplication.hpp"
-#include <ArnLib/Arn.hpp>
+#include <ArnInc/Arn.hpp>
 #include <QDebug>
 
 

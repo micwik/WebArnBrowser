@@ -36,7 +36,7 @@
 
 #include <Wt/WObject>
 #include <QObject>
-#include <ArnLib/ArnItem.hpp>
+#include <ArnInc/ArnItem.hpp>
 
 using namespace Wt;
 

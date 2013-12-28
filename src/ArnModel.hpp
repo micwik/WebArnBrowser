@@ -37,8 +37,9 @@
 #include <Wt/WAbstractItemModel>
 
 #include "ItemDataRole.hpp"
-#include <ArnLib/ArnItem.hpp>
-#include <ArnLib/MQFlags.hpp>
+#include <ArnInc/ArnDefs.hpp>
+#include <ArnInc/ArnItem.hpp>
+#include <ArnInc/MQFlags.hpp>
 
 class ArnMonitor;
 class ArnClient;
@@ -62,7 +63,7 @@ public:
     ArnNode( const QString &path, QObject *qobjParent = 0);
     ArnNode( ArnNode* parent, const QString& item, int row);
     ~ArnNode();
-    QString  name( ArnLink::NameF nameF)  const;
+    QString  name( Arn::NameF nameF)  const;
     QString  path()  const;
     void  init();
 

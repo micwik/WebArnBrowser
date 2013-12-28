@@ -44,8 +44,8 @@
 
 #include "TermWindow.hpp"
 #include "wqlib/WQApplication.hpp"
-#include <ArnLib/ArnItem.hpp>
-#include <ArnLib/Arn.hpp>
+#include <ArnInc/ArnItem.hpp>
+#include <ArnInc/Arn.hpp>
 #include <QDebug>
 
 

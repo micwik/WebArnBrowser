@@ -35,7 +35,7 @@
 #define TERMWINDOW_HPP
 
 #include <Wt/WObject>
-#include <ArnLib/ArnItem.hpp>
+#include <ArnInc/ArnItem.hpp>
 #include <QStringList>
 
 using namespace Wt;
