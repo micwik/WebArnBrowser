@@ -51,8 +51,9 @@
 #include <QCoreApplication>
 #include <QDebug>
 
-
+using Arn::XStringMap;
 using namespace Wt;
+
 
 QByteArray  arnBrowseName;
 QMutex  mainMutex;

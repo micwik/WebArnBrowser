@@ -37,14 +37,16 @@
 #include <Wt/WAbstractItemModel>
 
 #include "ItemDataRole.hpp"
-#include <ArnInc/ArnDefs.hpp>
 #include <ArnInc/ArnItem.hpp>
 #include <ArnInc/MQFlags.hpp>
 
 class ArnMonitor;
 class ArnClient;
-class XStringMap;
 class ArnModelW;
+
+namespace Arn {
+class XStringMap;
+}
 
 
 class ArnNode : public ArnItem
@@ -74,8 +76,8 @@ public:
     ArnNode*  _infoChild;
     ArnNode*  _helpChild;
     ArnMonitor*  _arnMon;
-    typedef XStringMap  SetMap;
-    typedef XStringMap  PropMap;
+    typedef Arn::XStringMap  SetMap;
+    typedef Arn::XStringMap  PropMap;
     SetMap*  _setMap;
     PropMap*  _propMap;
 
