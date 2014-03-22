@@ -55,7 +55,7 @@ HEADERS += \
     src/ArnModel.hpp
 
 
-LIBS += -L$$OUT_PWD/../ArnLib/ -lArn -lwt -lwthttp -lwtdbo -lwtdbosqlite3 \
+LIBS += -L$$OUT_PWD/../ArnLib/ -lArn4 -lwt -lwthttp -lwtdbo -lwtdbosqlite3 \
         -lboost_thread -lboost_signals -lboost_system \
         -lcrypt
 

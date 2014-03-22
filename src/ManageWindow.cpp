@@ -241,7 +241,7 @@ void  ManageWindow::doUpdate()
     _persistBox->setDisabled( !isTypePersistable || !isPathOpen);
     _mandatoryButton->setDisabled( !isPersistDB);
 
-    ArnItem::Mode  modePath = _arnPath.getMode();
+    Arn::ObjectMode  modePath = _arnPath.getMode();
     if (!isPathFolder && isPathOpen) {
         if (modePath.is( modePath.Pipe)) {
             _typeNormalButton->setDisabled(true);
@@ -278,7 +278,7 @@ void  ManageWindow::doUpdate()
 
 void  ManageWindow::doTypeUpdate()
 {
-    ArnItem::Mode  pathMode = _arnPath.getMode();
+    Arn::ObjectMode  pathMode = _arnPath.getMode();
     if (!_arnPath.isFolder()) {
         if (pathMode.is( pathMode.Pipe))
             _typeSel->setCheckedButton( _typeSel->button( Sel::Pipe));
@@ -297,7 +297,7 @@ void  ManageWindow::doTypeUpdate()
 
 void  ManageWindow::doPersistUpdate()
 {
-    ArnItem::Mode  modePath = _arnPath.getMode();
+    Arn::ObjectMode  modePath = _arnPath.getMode();
     if (_isPersistFile)
         _persistSel->setCheckedButton( _persistSel->button( Sel::PersistFile));
     else if (modePath.is( modePath.Save))
@@ -380,7 +380,7 @@ void  ManageWindow::onSaveButtonClicked()
         arnItem = &_arnPath;
     if (!arnItem->isOpen())  return;
 
-    ArnItem::Mode  mode;
+    Arn::ObjectMode  mode;
 
     switch (_typeSel->checkedId()) {
     case Sel::Bidir:
