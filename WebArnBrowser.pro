@@ -55,7 +55,13 @@ HEADERS += \
     src/ArnModel.hpp
 
 
-LIBS += -L$$OUT_PWD/../ArnLib/ -lArn4 -lwt -lwthttp -lwtdbo -lwtdbosqlite3 \
+greaterThan(QT_MAJOR_VERSION, 4) {
+    ARNLIB = Arn5
+} else {
+    ARNLIB = Arn4
+}
+
+LIBS += -L$$OUT_PWD/../ArnLib/ -l$${ARNLIB} -lwt -lwthttp -lwtdbo -lwtdbosqlite3 \
         -lboost_thread -lboost_signals -lboost_system \
         -lcrypt
 
@@ -64,23 +70,3 @@ INCLUDEPATH += $$PWD/.. /usr/local/include/wt
 OTHER_FILES += \
     logout.html \
     styles.css
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
