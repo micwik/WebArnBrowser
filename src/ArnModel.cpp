@@ -86,7 +86,7 @@ ArnNode::ArnNode( const QString &path, QObject *qobjParent) :
 
 
 ArnNode::ArnNode( ArnNode* parent, const QString& item, int row) :
-        ArnItem( *parent, item, parent)     // New item is also a QObject child
+        ArnItem( parent->path() + item, parent)     // New item is also a QObject child
 {
     init();
     _parent = parent;

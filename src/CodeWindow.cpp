@@ -71,7 +71,8 @@ CodeWindow::CodeWindow( const QString& path, QObject* parent) :
     _saveButton = new WPushButton("Save");
     _saveButton->resize(80, 25);
 
-    if (itemName.endsWith(".html")) {
+    if (itemName.endsWith(".html")
+    ||  itemName.endsWith(".xhtml")) {
         WTextEdit*  linRt = new WTextEdit;
         _lines = linRt;
         linRt->setExtraPlugins("searchreplace, table, nonbreaking, print");
