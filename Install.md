@@ -48,7 +48,7 @@ to contain the following:
 Tiny_mce and Code_mirror are available for free download from their web sites.
 
 Regarding ArnLib, the easiest way is to let it be placed in a standard location 
-for librarys and includes, e.g. /usr/lib and /usr/include/ArnLib.
+for librarys and includes, e.g. /usr/lib and /usr/include/ArnInc.
 
 When using a shared library it's path has to be known to 
 the run-time linker of your operating system. On Linux systems read

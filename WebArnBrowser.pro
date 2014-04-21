@@ -69,4 +69,6 @@ INCLUDEPATH += $$PWD/.. /usr/local/include/wt
 
 OTHER_FILES += \
     logout.html \
-    styles.css
+    styles.css \
+    README.md \
+    Install.md
